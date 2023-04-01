@@ -1,0 +1,8 @@
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\bin\Debug\GolDePlaca.exe.config
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\bin\Debug\GolDePlaca.exe
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\bin\Debug\GolDePlaca.pdb
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.csproj.AssemblyReference.cache
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.csproj.SuggestedBindingRedirects.cache
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.csproj.CoreCompileInputs.cache
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.exe
+C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.pdb
