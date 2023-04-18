@@ -12,7 +12,7 @@ namespace GolDePlaca
         static void Main(string[] args)
         {
             int opcao ;
-            Console.WriteLine("--Escolha se Adversario--");
+            Console.WriteLine("--Escolha seu Adversario--");
             Console.WriteLine();
             Console.WriteLine("--------------------------");
             Console.WriteLine("| Opção|                 |");
