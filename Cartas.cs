@@ -10,4 +10,6 @@ namespace GolDePlaca
     {
         public int valorCarta { get; set; }
     }
+   
+
 }
