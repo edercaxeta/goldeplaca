@@ -6,3 +6,11 @@ C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.csproj.Sugges
 C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.csproj.CoreCompileInputs.cache
 C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.exe
 C:\Users\ederc\Desktop\POO 2°\mvc\GolDePlaca\obj\Debug\GolDePlaca.pdb
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\bin\Debug\GolDePlaca.exe.config
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\bin\Debug\GolDePlaca.exe
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\bin\Debug\GolDePlaca.pdb
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\obj\Debug\GolDePlaca.csproj.AssemblyReference.cache
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\obj\Debug\GolDePlaca.csproj.SuggestedBindingRedirects.cache
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\obj\Debug\GolDePlaca.csproj.CoreCompileInputs.cache
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\obj\Debug\GolDePlaca.exe
+C:\Users\iasmi\OneDrive\Área de Trabalho\GolDeplaca\obj\Debug\GolDePlaca.pdb

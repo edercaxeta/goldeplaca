@@ -11,6 +11,7 @@ namespace GolDePlaca
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             //inicializando
             Player playerUm = new Player();
             Player playerdois = new Player();
@@ -29,6 +30,10 @@ namespace GolDePlaca
             int opcao;
 
             Console.WriteLine("--Escolha se Adversario--");
+=======
+            int opcao ;
+            Console.WriteLine("--Escolha seu Adversario--");
+>>>>>>> b0627f49315109488f6eebf2cec5ec6448341908
             Console.WriteLine();
             Console.WriteLine("--------------------------");
             Console.WriteLine("| Opção|                 |");
