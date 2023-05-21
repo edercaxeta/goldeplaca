@@ -459,7 +459,7 @@ namespace GolDePlaca
                 }
                 player.Pontos += somaPontos;
 
-                Console.WriteLine(string.Format("\n\n{0,82}", $"Cartas diferentes. Você ganhou {somaPontos} pontos"));
+                Console.WriteLine(string.Format("\n\n{0,82}", $"Cartas Diferentes. Você ganhou {somaPontos} pontos"));
             }
             player.Energia--;
             Console.ReadKey();
