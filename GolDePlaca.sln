@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.3.32804.467
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolDePlaca", "GolDePlaca.csproj", "{3DB2376E-2AA6-4567-83A6-8D62B5BF7647}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolDePlaca", "GolDePlaca.csproj", "{D4116FEC-A272-4127-86DD-6D7BB037BE90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3DB2376E-2AA6-4567-83A6-8D62B5BF7647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DB2376E-2AA6-4567-83A6-8D62B5BF7647}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DB2376E-2AA6-4567-83A6-8D62B5BF7647}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DB2376E-2AA6-4567-83A6-8D62B5BF7647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4116FEC-A272-4127-86DD-6D7BB037BE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4116FEC-A272-4127-86DD-6D7BB037BE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4116FEC-A272-4127-86DD-6D7BB037BE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4116FEC-A272-4127-86DD-6D7BB037BE90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4F6D6DC4-5767-4477-94FE-7CD5750D5810}
+		SolutionGuid = {5011B759-0784-4F18-A62C-F4325B5055A9}
 	EndGlobalSection
 EndGlobal

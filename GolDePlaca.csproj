@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DB2376E-2AA6-4567-83A6-8D62B5BF7647}</ProjectGuid>
+    <ProjectGuid>{D4116FEC-A272-4127-86DD-6D7BB037BE90}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>GolDePlaca</RootNamespace>
     <AssemblyName>GolDePlaca</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,13 +43,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cartas.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Model\Carta.cs" />
+    <Compile Include="Model\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\UtilCartas.cs" />
+    <Compile Include="Util\UtilImpressao.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fut.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gol.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tafarel.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acabou.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\penalidade.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\energia.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\amarelo.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\penalty.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\energy.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\falta.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

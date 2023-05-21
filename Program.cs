@@ -1,9 +1,9 @@
-﻿using GolDePlaca;
+﻿using GolDePlaca.Model;
+using GolDePlaca.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Media;
 
 namespace GolDePlaca
 {
@@ -11,257 +11,465 @@ namespace GolDePlaca
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            //inicializando
-            Player playerUm = new Player();
-            Player playerdois = new Player();
+            SoundPlayer soundPlayer = new SoundPlayer(Properties.Resources.fut);
+            soundPlayer.PlayLooping(); // Para começar o som e ficar repetindo.
+            
+            Player playerUm, playerdois;
 
-            //inicilizando energia
-            playerUm.Energia = 10;
-            playerdois.Energia = 10;
+            int saida = 0;
 
-            //inicializando gol
-            playerUm.Gol = 0;
-            playerdois.Gol = 0;
-
-            //inicializando pontos
-            playerUm.Pontos = 0;
-            playerdois.Pontos = 0;
-            int opcao;
-
-            Console.WriteLine("--Escolha se Adversario--");
-=======
-            int opcao ;
-            Console.WriteLine("--Escolha seu Adversario--");
->>>>>>> b0627f49315109488f6eebf2cec5ec6448341908
-            Console.WriteLine();
-            Console.WriteLine("--------------------------");
-            Console.WriteLine("| Opção|                 |");
-            Console.WriteLine("|------------------------|");
-            Console.WriteLine("| 1 | Single Player      |");
-            Console.WriteLine("| 2 | MultiPlayer        |");
-            Console.WriteLine("|------------------------|");
-            Console.Write("-->");
-            opcao = int.Parse(Console.ReadLine());
-            Console.WriteLine();
-
-            Console.WriteLine("Digite seu nome: ");
-            playerUm.Nome = Console.ReadLine();
-            Console.WriteLine();
-
-            if (opcao == 1)
+            while (saida == 0)
             {
-                playerdois.Nome = "PELE";
+                //Função para inicializar os objetos
+                InicializaObj(out playerUm, out playerdois);
+
+                //modo do jogo(Função de escolha)
+                UtilImpressao.ModoDeJogo(playerUm, playerdois);
+
+                //Placar de energia
                 Console.Clear();
-                Console.WriteLine("{0} Vs {1}", playerUm.Nome.ToUpper(), playerdois.Nome.ToUpper());
-            }
-            else if (opcao == 2)
-            {
-                Console.WriteLine("Digite seu nome: ");
-                playerdois.Nome = Console.ReadLine();
-                Console.WriteLine();
-
-                Console.Clear();
-                Console.WriteLine("{0} Vs {1}", playerUm.Nome.ToUpper(), playerdois.Nome.ToUpper());
-            }
-            else
-            {
-                Console.WriteLine("Opção Invalida");
-            }
-
-            //placar de energia
-            Console.Clear();
-            playerUm.Painel(playerUm, playerdois);
+                UtilImpressao.Placar(playerUm, playerdois);
 
 
-            //sorteio de quem irá começar
-            Random random = new Random();
-            int primeiroAJogar = random.Next(1, 3);
-
-            if (primeiroAJogar == 1)
-            {
-                Console.WriteLine("Quem irá começar será o {0}", playerUm.Nome.ToUpper());
-                Console.WriteLine();
-                Console.WriteLine("{0} escolha uma carta:", playerUm.Nome.ToUpper());
-                Console.WriteLine();
-
-                List<Cartas> lstCarta = new List<Cartas>();
+                //Sorteio de quem irá começar
+                Random random = new Random();
+                int primeiroAJogar = random.Next(1, 3);
 
 
-                for (int i = 0; i < 3; i++)
+                while (playerUm.Energia > 0 || playerdois.Energia > 0)
                 {
-                    //seleção de carta
-                    Random cartaSelecionada = new Random();
-                    int valorCarta = cartaSelecionada.Next(1, 7);
 
-                    Console.WriteLine("\nAperte enter para escolher a {0}° carta:", i + 1);
-                    Console.ReadKey();
-
-                    switch (valorCarta)
+                    if (primeiroAJogar == 1)
                     {
-                        case 1:
-                            Console.WriteLine("\nGOL");
-                            break;
-                        case 2:
-                            Console.WriteLine("\nPÊNALTI");
-                            break;
-                        case 3:
-                            Console.WriteLine("\nFALTA");
-                            break;
-                        case 4:
-                            Console.WriteLine("\nCARTÃO AMARELO");
-                            break;
-                        case 5:
-                            Console.WriteLine("\nCARTÃO VERMELHO");
-                            break;
-                        case 6:
-                            Console.WriteLine("\nENERGIA");
-                            break;
+                        //começa pelo playerum
+                        ExecutarJogada(playerUm);
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        UtilImpressao.Placar(playerUm, playerdois);
 
+                        ExecutarJogada(playerdois);
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        UtilImpressao.Placar(playerUm, playerdois);
+                    }
+                    else
+                    {
+                        //começa pelo playerdois
+                        ExecutarJogada(playerdois);
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        UtilImpressao.Placar(playerUm, playerdois);
+
+                        ExecutarJogada(playerUm);
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        UtilImpressao.Placar(playerUm, playerdois);
                     }
 
-                    Console.ReadKey();
-                    Cartas objCarta = new Cartas();
-                    objCarta.valorCarta = valorCarta;
-                    lstCarta.Add(objCarta);
+                }
+                Console.Clear();
 
-                }
-                if (lstCarta[0].valorCarta == 1 && lstCarta[1].valorCarta == 1 && lstCarta[2].valorCarta == 1)
+                //Verifica se há um campeão
+                if (playerUm.Gol > playerdois.Gol && playerUm.Energia == 0 && playerdois.Energia == 0)
+
                 {
-                    Console.WriteLine("Goooooooool");
+                    UtilImpressao.Final(playerUm,playerdois);
+                    UtilImpressao.Campeao(playerUm);
+                    //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerUm.Nome.ToUpper() + " você é o CAMPEÃO"));
                 }
-                else if (lstCarta[0].valorCarta == 2 && lstCarta[1].valorCarta == 2 && lstCarta[2].valorCarta == 2)
+                else if (playerUm.Gol < playerdois.Gol && playerUm.Energia == 0 && playerdois.Energia == 0)
                 {
-                    Console.WriteLine("Pênalti");
+                    UtilImpressao.Final(playerUm, playerdois);
+                    UtilImpressao.Campeao(playerdois);
+                    //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerdois.Nome.ToUpper() + " você é o CAMPEÃO"));
                 }
-                else if (lstCarta[0].valorCarta == 3 && lstCarta[1].valorCarta == 3 && lstCarta[2].valorCarta == 3)
+                //Verifica se há empate
+                else if (playerUm.Gol == playerdois.Gol && playerUm.Energia == 0 && playerdois.Energia == 0)
                 {
-                    Console.WriteLine(" Três Faltas, PASSOU A VEZ");
+                    if (playerUm.Pontos > playerdois.Pontos)
+                    {
+                        UtilImpressao.Final(playerUm, playerdois);
+                        UtilImpressao.Campeao(playerUm);
+                        //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerUm.Nome.ToUpper() + " você é o CAMPEÃO"));
+                    }
+                    else if (playerUm.Pontos < playerdois.Pontos)
+                    {
+                        UtilImpressao.Final(playerUm, playerdois);
+                        UtilImpressao.Campeao(playerdois);
+                        //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerdois.Nome.ToUpper() + " você é o CAMPEÃO"));
+                    }
+                    //empate de pontuação
+                    else
+                    {
+                        //sorteio do campeao caso de empate em todos os criterios
+                        Console.WriteLine("Empate na pontuação, o critério aplicado para\n definir o ganhador será: ALEATÓRIO");
+                        Random rnd = new Random();
+                        int ganhadorAleatorio = rnd.Next(1, 3);
+                        switch (ganhadorAleatorio)
+                        {
+                            case 1:
+                                UtilImpressao.Final(playerUm, playerdois);
+                                UtilImpressao.Campeao(playerUm);
+                                //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerUm.Nome.ToUpper() + " você é o CAMPEÃO"));
+                                break;
+                            case 2:
+                                UtilImpressao.Final(playerUm, playerdois);
+                                UtilImpressao.Campeao(playerdois);
+                                //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerdois.Nome.ToUpper() + " você é o CAMPEÃO"));
+                                break;
+                            default:
+                                Console.WriteLine("Algo inesperado aconteceu!");
+                                break;
+                        }
+                    }
                 }
-                else if (lstCarta[0].valorCarta == 4 && lstCarta[1].valorCarta == 4 && lstCarta[2].valorCarta == 4)
+
+                SoundPlayer soundPlayer1 = new SoundPlayer(Properties.Resources.acabou);
+                soundPlayer1.Play(); // Para começar o som normalmente.
+                                    
+                Console.ReadKey();
+                soundPlayer.Stop();
+                SoundPlayer soundPlayer2 = new SoundPlayer(Properties.Resources.fut);
+                soundPlayer2.PlayLooping(); // Para começar o som e ficar repetindo.
+                                            
+                Console.ReadKey();
+                Console.Clear();
+
+                Console.WriteLine("\nDigite “-1” para sair, ou digite “0” para uma nova partida");
+                saida = int.Parse(Console.ReadLine());
+
+                while (saida != 0 && saida != -1)
                 {
-                    Console.WriteLine("Três Cartões amarelos, PERDEU UMA ENERGIA");
-                    Console.WriteLine("ALERTA!!!! Proximo sera duas ");
+                    Console.WriteLine("Opção invalida, Repita!");
+                    saida = int.Parse(Console.ReadLine());
                 }
-                else if (lstCarta[0].valorCarta == 5 && lstCarta[1].valorCarta == 5 && lstCarta[2].valorCarta == 5)
+                Console.Clear() ;
+            }
+          
+            Console.WriteLine(string.Format("\n{0,67}", "COMPONENTES"));
+            Console.WriteLine(string.Format("\n\n{0,71}", "IASMINE DE SOUSA "));
+            Console.WriteLine(string.Format("\n{0,71}", "  ÉDER CAIXETA   "));
+            Console.WriteLine(string.Format("\n{0,71}", " FLAVIO REZENDE  "));
+            Console.WriteLine(string.Format("\n{0,71}", " LUCAS CARVALHO  "));
+            Console.WriteLine(string.Format("\n{0,71}", " RAFAEL BEZERRA  "));
+
+            Console.WriteLine(string.Format("\n\n\n\n\n{0,71}", "POO II TURMA:2023 "));
+
+            Console.ReadLine();
+        }
+
+        private static void InicializaObj(out Player playerUm, out Player playerdois)
+        {
+            playerUm = new Player();
+            playerdois = new Player();
+        }
+
+        private static void ExecutarJogada(Player player)
+        {
+            InicializaObj(out Player playerUm, out Player playerdois);
+            Console.WriteLine(string.Format("\n{0,75}", "Quem jogará agora é o " + player.Nome.ToUpper()));
+            Console.WriteLine();
+
+
+            List<Carta> cartasDaVez = new List<Carta>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\nAperte enter para escolher a {0}ª carta:", i + 1);
+                Console.ReadKey();
+                cartasDaVez.Add(UtilCartas.SortearCarta());
+            }
+            Console.ReadKey(true);
+            
+            //Gol
+            if (cartasDaVez.All(carta => carta.Numero == 1))
+            {
+                Console.Clear();
+                UtilImpressao.Gol();
+                player.Gol++;
+
+            }
+
+            //Pênalti
+            else if (cartasDaVez.All(carta => carta.Numero == 2))
+            {
+                int[] opcaoPenalti = new int[2];
+                switch (UtilImpressao.Opcao)
                 {
-                    Console.WriteLine("Três Cartões Vermelho, PERDEU DUAS ENERGIA");
-                    Console.WriteLine("Passou a Vez ");
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+
+                        Console.WriteLine("\nPênalidade Maxima, o Juiz não exitou e marcou o Penalti!!");
+
+                        SoundPlayer soundPlayer = new SoundPlayer(Properties.Resources.penalty);
+                        soundPlayer.Play(); // Para começar o som normalmente.
+                                           
+                        Console.ReadKey();
+                        soundPlayer.Stop();
+                        SoundPlayer soundPlayer1 = new SoundPlayer(Properties.Resources.fut);
+                        soundPlayer1.PlayLooping(); // Para começar o som e ficar repetindo.
+                                                  
+                        Console.ReadKey(true);
+                        Console.Clear();
+
+                        Random random = new Random();
+                        int primeiroAJogar = random.Next(1, 3);
+                        if (primeiroAJogar == 1)
+                        {
+                            Console.WriteLine(string.Format("{0,80}", "QUEM VAI COMEÇAR É O " + player.Nome.ToUpper()));
+                            for (int i = 0; i < 3; i++)
+                            {
+                                //Vez do jogadorUm
+                                if (i == 0)
+                                {
+                                    UtilImpressao.Escolha();
+                                    int op = int.Parse(Console.ReadLine());
+                                    Console.Clear();
+                                }
+                                //Vez do PELE
+                                if (i == 1)
+                                {
+                                    UtilImpressao.Escolha();
+                                    Random rand = new Random();
+                                    int ladoAleatorio = rand.Next(1, 4);
+                                    opcaoPenalti[i] = ladoAleatorio;
+                                    Console.WriteLine("PELÉ FEZ SUA ESCOLHA!");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                if (i == 2)
+                                {
+                                    if (opcaoPenalti[0] == opcaoPenalti[1])
+                                    {
+                                        UtilImpressao.DefesaPenalti();
+                                    }
+                                    else
+                                    {
+                                        UtilImpressao.Gol();
+                                        player.Gol++;
+                                    }
+                                }
+                            }
+
+                        }
+                        else if(primeiroAJogar == 2)
+                        {
+                            Console.WriteLine(string.Format("{0,80}", "QUEM VAI COMEÇAR É O " + player.Nome.ToUpper()));
+                            for (int i = 0; i < 3; i++)
+                            {
+                                //Vez de PELE
+                                if (i == 0)
+                                {
+                                    UtilImpressao.Escolha();
+                                    Random rand = new Random();
+                                    int ladoAleatorio = rand.Next(1, 4);
+                                    opcaoPenalti[i] = ladoAleatorio;
+                                    Console.WriteLine("PELÉ FEZ SUA ESCOLHA!");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                                //Vez do jogadorUm
+                                if (i == 1)
+                                {
+                                    UtilImpressao.Escolha();
+                                    int op = int.Parse(Console.ReadLine());
+                                    opcaoPenalti[i] = op;
+                                    Console.Clear();
+                                }
+                                if (i == 2)
+                                {
+                                    if (opcaoPenalti[0] == opcaoPenalti[1])
+                                    {
+                                        UtilImpressao.DefesaPenalti();
+                                    }
+                                    else
+                                    {
+                                        UtilImpressao.Gol();
+                                        player.Gol++;
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
+
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+
+                        Console.WriteLine("\nPênalidade Maxima, o Juiz não exitou e marcou o Penalti!!");
+
+                        SoundPlayer soundPlayer3 = new SoundPlayer(Properties.Resources.penalty);
+                        soundPlayer3.Play(); // Para começar o som normalmente.
+                                           
+                        Console.ReadKey();
+                        soundPlayer3.Stop();
+                        SoundPlayer soundPlayer4 = new SoundPlayer(Properties.Resources.fut);
+                        soundPlayer4.PlayLooping(); // Para começar o som e ficar repetindo.
+                                                   
+                        Console.ReadKey(true);
+                        Console.Clear();
+
+                        Random rnd = new Random();
+                        int Primeiro = rnd.Next(1, 3);
+                        if (Primeiro == 1)
+                        {
+                            Console.WriteLine(string.Format("{0,80}", "QUEM VAI COMEÇAR É O " + player.Nome.ToUpper())); Console.WriteLine(string.Format("{0,80}", "O " + player.Nome.ToUpper()));
+                            for (int i = 0; i < 3; i++)
+                            {
+                                //Vez do jogadorUm
+                                if (i == 0)
+                                {
+                                    UtilImpressao.Escolha();
+                                    int op = int.Parse(Console.ReadLine());
+                                    opcaoPenalti[i] = op;
+                                    Console.Clear();
+                                }
+                                //Vez do jogadordois
+                                if (i == 1)
+                                {
+                                    UtilImpressao.Escolha();
+                                    int op = int.Parse(Console.ReadLine());
+                                    opcaoPenalti[i] = op;
+                                    Console.Clear();
+                                }
+                                if (i == 2)
+                                {
+                                    if (opcaoPenalti[0] == opcaoPenalti[1])
+                                    {
+                                        UtilImpressao.DefesaPenalti();
+                                    }
+                                    else
+                                    {
+                                        UtilImpressao.Gol();
+                                        player.Gol++;
+                                    }
+                                }
+                            }
+
+                        }
+                        else if (Primeiro == 2)
+                        {
+                            Console.WriteLine(string.Format("{0,80}", "QUEM VAI COMEÇAR É O " + player.Nome.ToUpper()));
+                            for (int i = 0; i < 3; i++)
+                            {
+                                //Vez do playerdois
+                                if (i == 0)
+                                {
+                                    UtilImpressao.Escolha();
+                                    int op = int.Parse(Console.ReadLine());
+                                    opcaoPenalti[i] = op;
+                                    Console.Clear();
+                                }
+                                //Vez do jogadorUm
+                                if (i == 1)
+                                {
+                                    UtilImpressao.Escolha();
+                                    int op = int.Parse(Console.ReadLine());
+                                    opcaoPenalti[i] = op;
+                                    Console.Clear();
+                                }
+                                if (i == 2)
+                                {
+                                    if (opcaoPenalti[0] == opcaoPenalti[1])
+                                    {
+                                        UtilImpressao.DefesaPenalti();
+                                    }
+                                    else
+                                    {
+                                        UtilImpressao.Gol();
+                                        player.Gol++;
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
+                    default:
+                        Console.WriteLine("Algo deu errado!");
+                        break;
+                }
+            }
+
+            //Falta
+            else if (cartasDaVez.All(carta => carta.Numero == 3))
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine(" Três Faltas, PASSOU A VEZ :( ");
+                SoundPlayer soundPlayer1 = new SoundPlayer(Properties.Resources.falta);
+                soundPlayer1.Play(); // Para começar o som normalmente.
+                                     
+                Console.ReadKey();
+                soundPlayer1.Stop();
+
+                SoundPlayer soundPlayer2 = new SoundPlayer(Properties.Resources.fut);
+                soundPlayer2.PlayLooping(); // Para começar o som e ficar repetindo.
+            }
+
+            //Cartão Amarelo
+            else if (cartasDaVez.All(carta => carta.Numero == 4))
+            {
+                UtilImpressao.CartaoAmarelo();
+
+                player.Energia--;
+                if (player.JaTemCartaoAmarelo)
+                {
+                    Console.WriteLine("\n\nSegundo cartão seguido! Perdeu duas energias!");
+                    player.Energia--;
+                    player.JaTemCartaoAmarelo = false;
                 }
                 else
                 {
-                    //gol
-                    if (lstCarta[0].valorCarta == 1)
-                        playerUm.Pontos+= 3;
-                    if (lstCarta[1].valorCarta == 1)
-                        playerUm.Pontos += 3;
-                    if (lstCarta[2].valorCarta == 1)
-                        playerUm.Pontos += 3;
-
-                    //penalti
-                    if (lstCarta[0].valorCarta == 2)
-                        playerUm.Pontos += 2;
-                    if (lstCarta[1].valorCarta == 2)
-                        playerUm.Pontos += 2;
-                    if (lstCarta[2].valorCarta == 2)
-                        playerUm.Pontos += 2;
-
-                    //falta
-                    if (lstCarta[0].valorCarta == 3)
-                        playerUm.Pontos += 1;
-                    if (lstCarta[1].valorCarta == 3)
-                        playerUm.Pontos += 1;
-                    if (lstCarta[2].valorCarta == 3)
-                        playerUm.Pontos += 1;
-
-                    //cartao amarelo
-                    if (lstCarta[0].valorCarta == 4)
-                        playerUm.Pontos += 1;
-                    if (lstCarta[1].valorCarta == 4)
-                        playerUm.Pontos += 1;
-                    if (lstCarta[2].valorCarta == 4)
-                        playerUm.Pontos += 1;
-
-                    if (lstCarta[0].valorCarta == 6)
-                        playerUm.Pontos += 2;
-                    if (lstCarta[1].valorCarta == 6)
-                        playerUm.Pontos += 2;
-                    if (lstCarta[2].valorCarta == 6)
-                        playerUm.Pontos += 2;
+                    Console.WriteLine("\nPERDEU UMA ENERGIA");
+                    Console.WriteLine("\nALERTA!!!! Proximo sera duas ");
+                    player.JaTemCartaoAmarelo = true;
                 }
 
+            }
 
-                //else
-                //{
-                //    for (int i = 0; i < lstCarta.Count; i++)
-                //    {
+            //Cartão Vermelho
+            else if (cartasDaVez.All(carta => carta.Numero == 5))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Três Cartões Vermelho, PERDEU DUAS ENERGIA");
+                player.Energia -= 2;
+                Console.Clear();
 
-                //        if (lstCarta[0].valorCarta == 1 || lstCarta[1].valorCarta == 1 || lstCarta[2].valorCarta == 1)//gol
-                //        {
-                //            playerUm.Energia += 3;
-                //        }
-                //        else if (lstCarta[0].valorCarta == 2 || lstCarta[1].valorCarta == 2 || lstCarta[2].valorCarta == 2)//penalti
-                //        {
-                //            playerUm.Energia += 2;
+                UtilImpressao.CartaoVermelho();
+               
+            }
 
-                //        }
-                //        else if (lstCarta[0].valorCarta == 3 || lstCarta[1].valorCarta == 3 || lstCarta[2].valorCarta == 3)//falta
-                //        {
-                //            playerUm.Energia++;
-                //        }
-                //        else if (lstCarta[0].valorCarta == 4 || lstCarta[1].valorCarta == 4 || lstCarta[2].valorCarta == 4)//cartao amarelo
-                //        {
-                //            playerUm.Energia++;
-                //        }
-                //        else if (lstCarta[0].valorCarta == 5 || lstCarta[1].valorCarta == 5 || lstCarta[2].valorCarta == 5)//cartao vermelho
-                //        {
-                //            playerUm.Energia += 0;
-                //        }
-                //        else if (lstCarta[0].valorCarta == 6 && lstCarta[1].valorCarta == 6 && lstCarta[2].valorCarta == 6)
-                //        {
-                //            playerUm.Energia -= 2;
-                //        }
-                //    }
-                   
-                //}
+            //Energia
+            else if (cartasDaVez.All(carta => carta.Numero == 6))
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
 
+                Console.WriteLine("\nGANHOU ENERGIA!");
+                player.Energia++;
+                Console.Clear();
+
+                UtilImpressao.Energia();
             }
             else
             {
-                Console.WriteLine("Quem irá começar será {0}", playerdois.Nome.ToUpper());
-                Console.WriteLine();
+                int somaPontos = 0;
+                foreach (var carta in cartasDaVez)
+                {
+                    somaPontos += carta.Pontuacao;
+                }
+                player.Pontos += somaPontos;
+
+                Console.WriteLine(string.Format("\n\n{0,82}", $"Cartas diferentes. Você ganhou {somaPontos} pontos"));
             }
-            Console.Clear();
-            playerUm.Painel(playerUm, playerdois);
-
-            Console.ReadLine();
-
-
-
+            player.Energia--;
+            Console.ReadKey();
         }
     }
 }
 
-//public Player RealizarJogada()
-//{
-//    List<Cartas> lstCarta = new List<Cartas>();
+//exeplos de iplementação de audio
 
-//    for (int i = 0; i < 3; i++)
-//    {
-//        Console.WriteLine("Escolha a carta " + (i + 1));
-//        Random cartaSelecionada = new Random();
-//        Cartas objCarta = new Cartas();
-
-//        int valorCarta = cartaSelecionada.Next(1, 7);
-//        objCarta.valorCarta = valorCarta;
-
-//        lstCarta.Add(objCarta);
-//    }
-
-//    AtualizarPontuacao();
-//}
-
-//public void AtualizarPontuacao()
-//{
-
-//}
+//SoundPlayer soundPlayer = new SoundPlayer(Properties.Resources.fut);
+//soundPlayer.Play(); // Para começar o som normalmente.
+//soundPlayer.PlayLooping(); // Para começar o som e ficar repetindo.
+//soundPlayer.PlaySync(); // Para começar o som e só ir para a próxima linha quando parar de tocar.
