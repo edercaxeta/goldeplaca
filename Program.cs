@@ -75,13 +75,11 @@ namespace GolDePlaca
                 {
                     UtilImpressao.Final(playerUm,playerdois);
                     UtilImpressao.Campeao(playerUm);
-                    //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerUm.Nome.ToUpper() + " você é o CAMPEÃO"));
-                }
+                                    }
                 else if (playerUm.Gol < playerdois.Gol && playerUm.Energia == 0 && playerdois.Energia == 0)
                 {
                     UtilImpressao.Final(playerUm, playerdois);
                     UtilImpressao.Campeao(playerdois);
-                    //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerdois.Nome.ToUpper() + " você é o CAMPEÃO"));
                 }
                 //Verifica se há empate
                 else if (playerUm.Gol == playerdois.Gol && playerUm.Energia == 0 && playerdois.Energia == 0)
@@ -90,13 +88,11 @@ namespace GolDePlaca
                     {
                         UtilImpressao.Final(playerUm, playerdois);
                         UtilImpressao.Campeao(playerUm);
-                        //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerUm.Nome.ToUpper() + " você é o CAMPEÃO"));
                     }
                     else if (playerUm.Pontos < playerdois.Pontos)
                     {
                         UtilImpressao.Final(playerUm, playerdois);
                         UtilImpressao.Campeao(playerdois);
-                        //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerdois.Nome.ToUpper() + " você é o CAMPEÃO"));
                     }
                     //empate de pontuação
                     else
@@ -110,12 +106,10 @@ namespace GolDePlaca
                             case 1:
                                 UtilImpressao.Final(playerUm, playerdois);
                                 UtilImpressao.Campeao(playerUm);
-                                //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerUm.Nome.ToUpper() + " você é o CAMPEÃO"));
                                 break;
                             case 2:
                                 UtilImpressao.Final(playerUm, playerdois);
                                 UtilImpressao.Campeao(playerdois);
-                                //Console.WriteLine(string.Format("\n\n{0,71}", "Parabéns " + playerdois.Nome.ToUpper() + " você é o CAMPEÃO"));
                                 break;
                             default:
                                 Console.WriteLine("Algo inesperado aconteceu!");
@@ -145,18 +139,13 @@ namespace GolDePlaca
                 }
                 Console.Clear() ;
             }
-          
-            Console.WriteLine(string.Format("\n{0,67}", "COMPONENTES"));
-            Console.WriteLine(string.Format("\n\n{0,71}", "IASMINE DE SOUSA "));
-            Console.WriteLine(string.Format("\n{0,71}", "  ÉDER CAIXETA   "));
-            Console.WriteLine(string.Format("\n{0,71}", " FLAVIO REZENDE  "));
-            Console.WriteLine(string.Format("\n{0,71}", " LUCAS CARVALHO  "));
-            Console.WriteLine(string.Format("\n{0,71}", " RAFAEL BEZERRA  "));
 
-            Console.WriteLine(string.Format("\n\n\n\n\n{0,71}", "POO II TURMA:2023 "));
-
+            UtilImpressao.Integrantes();
+            Console.WriteLine(string.Format("\n\n\n\n\n{0,68}", "POO II TURMA:2023 "));
             Console.ReadLine();
         }
+
+
 
         private static void InicializaObj(out Player playerUm, out Player playerdois)
         {
@@ -414,7 +403,7 @@ namespace GolDePlaca
                 player.Energia--;
                 if (player.JaTemCartaoAmarelo)
                 {
-                    Console.WriteLine("\n\nSegundo cartão seguido! Perdeu duas energias!");
+                    Console.WriteLine("\n\nSEGUNDO CARTÃO SEGUIDO!!!\r\n\nPERDEU DUAS ENERGIAS");
                     player.Energia--;
                     player.JaTemCartaoAmarelo = false;
                 }
@@ -459,7 +448,7 @@ namespace GolDePlaca
                 }
                 player.Pontos += somaPontos;
 
-                Console.WriteLine(string.Format("\n\n{0,82}", $"Cartas Diferentes. Você ganhou {somaPontos} pontos"));
+                Console.WriteLine(string.Format("\n\n{0,82}", $"Cartas diferentes. Você ganhou {somaPontos} pontos"));
             }
             player.Energia--;
             Console.ReadKey();

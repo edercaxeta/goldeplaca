@@ -21,19 +21,19 @@ namespace GolDePlaca.Util
         public static Carta SortearCarta()
         {
             //Testar retorno de cartas iguais: comenta tudo, descomenta isso abaixo e coloca o número do tipo que vc tipo quer
-            //Carta cartaSorteada = cartasPadrao.First(carta => carta.Numero == 3);
+            //Carta cartaSorteada = cartasPadrao.First(carta => carta.Numero == 6);
             //Console.WriteLine($"\n{cartaSorteada.Tipo}");
             //return cartaSorteada;
 
             Random random = new Random();
             int numeroCarta = random.Next(1, 7);
 
-           
 
             switch (numeroCarta)
             {
                 case 1:
                     Console.ForegroundColor = ConsoleColor.White;
+
                     break;
 
                 case 2:
@@ -54,8 +54,8 @@ namespace GolDePlaca.Util
 
                 case 6:
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    break;   
-                    
+                    break;
+
                 default:
                     break;
             }

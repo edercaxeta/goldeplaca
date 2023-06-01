@@ -72,6 +72,13 @@ namespace GolDePlaca.Util
         }
         public static bool OpcaoInvalida(int opcao)
         {
+            //if (!(Int32.TryParse(opcao.ToString(), out opcao)))
+            //{
+            //    string msg = "Não digite letras, apenas números";
+            //    ApplicationException e = new ApplicationException(msg);
+            
+            //}    throw e;
+
             return opcao <= 0 || opcao >= 3;
         }
 
@@ -151,14 +158,10 @@ namespace GolDePlaca.Util
         public static void CartaoAmarelo()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(string.Format("{0,70}", "CARTÃO AMARELO"));
-            Console.WriteLine(string.Format("\n{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            //Console.WriteLine(string.Format("{0,70}", "CARTÃO AMARELO"));
+            Console.WriteLine(string.Format(@"{0,90}", "\r\n                   ,▄███████████████████████\r\n                   ██ ░   ░                ██\r\n                   ██    CARTÃO AMARELO    ██\r\n                   ██ ░                    ██\r\n                   ██                      ██\r\n                   ██                      ██\r\n                   ██                      ██\r\n                   ██       ▄██▀▀██▄       ██\r\n                   ██      ▐█      █▌      ██\r\n                   ██      ▐█      █▌      ██\r\n                ╔████      ▐█      █▌      ██\r\n              ▄█▀  ██      ▐█      █▌      ██\r\n             ▐█    ██      ▐█      █▌      ██\r\n             ██    ██      ▐█      ██      ██\r\n             ██    ██      ▐█      '█▄     ██\r\n             ██     ▀████████        ▀█████▀\r\n             ██            ▐█          ▀█▄\r\n             ██                          █▌\r\n              ██                         ▐█\r\n               ╙█▄                       ▐█\r\n                 ╙█▄                     ██\r\n                   ╙█▄,               ,▄█▀\r\n                      ▀▀▀███████████▀▀▀`"));
+            
 
             SoundPlayer soundPlayer1 = new SoundPlayer(Properties.Resources.yellow);
             soundPlayer1.Play(); // Para começar o som normalmente.
@@ -172,14 +175,9 @@ namespace GolDePlaca.Util
 
         public static void CartaoVermelho()
         {
-            Console.WriteLine(string.Format("{0,70}", "CARTÃO VERMELHO"));
-            Console.WriteLine(string.Format("\n{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine(string.Format("{0,67}", "########"));
-            Console.WriteLine("Passou a Vez");
+            //Console.WriteLine(string.Format("{0,70}", "CARTÃO VERMELHO"));
+            Console.WriteLine(string.Format(@"{0,90}", "\r\n                   ,▄███████████████████████\r\n                   ██ ░   ░                ██\r\n                   ██    CARTÃO VERMELHO   ██\r\n                   ██ ░                    ██\r\n                   ██                      ██\r\n                   ██                      ██\r\n                   ██                      ██\r\n                   ██       ▄██▀▀██▄       ██\r\n                   ██      ▐█      █▌      ██\r\n                   ██      ▐█      █▌      ██\r\n                ╔████      ▐█      █▌      ██\r\n              ▄█▀  ██      ▐█      █▌      ██\r\n             ▐█    ██      ▐█      █▌      ██\r\n             ██    ██      ▐█      ██      ██\r\n             ██    ██      ▐█      '█▄     ██\r\n             ██     ▀████████        ▀█████▀\r\n             ██            ▐█          ▀█▄\r\n             ██                          █▌\r\n              ██                         ▐█\r\n               ╙█▄                       ▐█\r\n                 ╙█▄                     ██\r\n                   ╙█▄,               ,▄█▀\r\n                      ▀▀▀███████████▀▀▀`"));
+            Console.WriteLine("\nPASSOU A VEZ!");
 
             SoundPlayer soundPlayer1 = new SoundPlayer(Properties.Resources.red);
             soundPlayer1.Play(); // Para começar o som normalmente.
@@ -194,13 +192,23 @@ namespace GolDePlaca.Util
         public static void Energia()
         {
             Console.WriteLine(string.Format("\n{0,74}", "VOCÊ GANHOU UMA ENERGIA"));
-            Console.WriteLine(string.Format("\n{0,74}", "#######################"));
-            Console.WriteLine(string.Format("{0,76}", "# ##### ##### #####   #  "));
-            Console.WriteLine(string.Format("{0,76}", "# ##### ##### #####   ## "));
-            Console.WriteLine(string.Format("{0,76}", "# ##### ##### #####   ## "));
-            Console.WriteLine(string.Format("{0,76}", "# ##### ##### #####   #  "));
-            Console.WriteLine(string.Format("{0,74}", "#######################"));
-            Console.WriteLine("\n   PASSE A VEZ");
+            Console.WriteLine("\n\n\n");
+            Console.WriteLine(@"
+                                        ██████████████████████████████████████████████
+                                        ██████████████████████████████████████████████
+                                        ████                                      ▐███
+                                        ████    ███▌     ▐███      ████           ▐███████
+                                        ████    ███▌     ▐███      ████           ▐███████
+                                        ████    ███▌     ▐███      ████           ▐███████
+                                        ████    ███▌     ▐███      ████           ▐███████
+                                        ████    ███▌     ▐███      ████           ▐███████
+                                        ████    ███▌     ▐███      ████           ▐███████
+                                        ████                                      ▐███▀▀▀▀
+                                        ████                                      ▐███
+                                        ██████████████████████████████████████████████
+    
+");
+            Console.WriteLine("\n\n\n\n  PASSE A VEZ");
 
             SoundPlayer soundPlayer1 = new SoundPlayer(Properties.Resources.energy);
             soundPlayer1.Play(); // Para começar o som normalmente.
@@ -247,6 +255,31 @@ namespace GolDePlaca.Util
             Console.WriteLine("                  Energia de {0} : {1}   Gol : {2}   Pontuação : {3}", objplayerDois.Nome.ToUpper(), objplayerDois.Energia, objplayerDois.Gol, objplayerDois.Pontos);
             Console.WriteLine("╬═══════=══════════=══════════=══════════=══════════=══════════=══════════=══════════=══════════=══════════=═══════════╬");
         }
+
+        public static void Integrantes()
+        {
+            Console.WriteLine(@"                                                 -------------------
+                                                  My World Cup Team
+                                                 -------------------
+                                                                                     CESAR
+                                                                                    FERREIRA
+
+                              IASMINE      ÉDER     FLAVIO      LUCAS      RAFAEL      ,/)
+                                                                                       |_|
+                                 _          _          _          _          _         ].[
+                                |.|        |.|        |.|        |.|        |.|      /~`-'~\
+                                ]^[        ]^[        ]^[        ]^[        ]^[     (<|%  |>)
+                              /~`-'~\    /~`-'~\    /~`-'~\    /~`-'~\    /~`-'~\    \|___|/
+                             {<|%  |>}  {<|%  |>}  {<|%  |>}  {<|%  |>}  {<|%  |>}   {/   \}
+                              \|___|/    \|___|/    \|___|/    \|___|/    \|___|/    /__|__\
+                             /\    \      /   \      /   \      /   \      /   \     | / \ |
+                             |/>/|__\    /__|__\    /__|__\    /__|__\    /__|__\    |/   \|
+                            _|)   \ |    | / \ |    | / \ |    | / \ |    | / \ |    {}   {}
+                           (_,|    \)    (/   \)    (/   \)    (/   \)    (/   \)    |)   (|
+                           / \     (|_  _|)   (|_  _|)   (|_  _|)   (|_  _|)   (|_  _||   ||_
+                        .,.\_/,...,|,_)(_,|,.,|,_)(_,|,.,|,_)(_,|,.,|,_)(_,|,.,|,_)(_,|.,.|,_).,.");
+        }
+       
     }
 }
 //exeplos de iplementação de audio
