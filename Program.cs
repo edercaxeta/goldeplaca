@@ -42,28 +42,39 @@ namespace GolDePlaca
                     if (primeiroAJogar == 1)
                     {
                         //começa pelo playerum
-                        ExecutarJogada(playerUm);
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        UtilImpressao.Placar(playerUm, playerdois);
-
-                        ExecutarJogada(playerdois);
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        UtilImpressao.Placar(playerUm, playerdois);
+                        if (playerUm.Energia > 0)
+                        {
+                            ExecutarJogada(playerUm);
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            UtilImpressao.Placar(playerUm, playerdois);
+                        }
+                        if (playerdois.Energia > 0)
+                        {
+                            ExecutarJogada(playerdois);
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            UtilImpressao.Placar(playerUm, playerdois);
+                        }
                     }
                     else
                     {
                         //começa pelo playerdois
-                        ExecutarJogada(playerdois);
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        UtilImpressao.Placar(playerUm, playerdois);
+                        if (playerdois.Energia > 0)
+                        {
+                            ExecutarJogada(playerdois);
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            UtilImpressao.Placar(playerUm, playerdois);
+                        }
 
-                        ExecutarJogada(playerUm);
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        UtilImpressao.Placar(playerUm, playerdois);
+                        if (playerUm.Energia > 0)
+                        {
+                            ExecutarJogada(playerUm);
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            UtilImpressao.Placar(playerUm, playerdois);
+                        }
                     }
 
                 }
